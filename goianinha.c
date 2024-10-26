@@ -534,9 +534,10 @@ char *yytext;
 #include <string.h> // Para strdup
 #include "goianinha.tab.h"
 
-extern int yylineno; /* número da linha */
-#line 539 "goianinha.c"
+extern int yylineno;
+extern FILE *yyin;
 #line 540 "goianinha.c"
+#line 541 "goianinha.c"
 
 #define INITIAL 0
 
@@ -753,10 +754,10 @@ YY_DECL
 		}
 
 	{
-#line 21 "goianinha.l"
+#line 22 "goianinha.l"
 
 
-#line 760 "goianinha.c"
+#line 761 "goianinha.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -815,228 +816,228 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 23 "goianinha.l"
-{ return PROGRAMA; }
+#line 24 "goianinha.l"
+{ printf("Palavra reservada PROGRAMA reconhecida: '%s' na linha %d\n", yytext, yylineno); return PROGRAMA; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "goianinha.l"
-{ return CARACTERE; }
+#line 25 "goianinha.l"
+{ printf("Palavra reservada CARACTERE reconhecida: '%s' na linha %d\n", yytext, yylineno); return CARACTERE; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "goianinha.l"
-{ return INTEIRO; }
+#line 26 "goianinha.l"
+{ printf("Palavra reservada INTEIRO reconhecida: '%s' na linha %d\n", yytext, yylineno); return INTEIRO; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 26 "goianinha.l"
-{ return RETORNE; }
+#line 27 "goianinha.l"
+{ printf("Palavra reservada RETORNE reconhecida: '%s' na linha %d\n", yytext, yylineno); return RETORNE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 27 "goianinha.l"
-{ return LEIA; }
+#line 28 "goianinha.l"
+{ printf("Palavra reservada LEIA reconhecida: '%s' na linha %d\n", yytext, yylineno); return LEIA; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 28 "goianinha.l"
-{ return ESCREVA; }
+#line 29 "goianinha.l"
+{ printf("Palavra reservada ESCREVA reconhecida: '%s' na linha %d\n", yytext, yylineno); return ESCREVA; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 29 "goianinha.l"
-{ return NOVA_LINHA; }
+#line 30 "goianinha.l"
+{ printf("Palavra reservada NOVA_LINHA reconhecida: '%s' na linha %d\n", yytext, yylineno); return NOVA_LINHA; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 30 "goianinha.l"
-{ return SE; }
+#line 31 "goianinha.l"
+{ printf("Palavra reservada SE reconhecida: '%s' na linha %d\n", yytext, yylineno); return SE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 31 "goianinha.l"
-{ return ENTAO; }
+#line 32 "goianinha.l"
+{ printf("Palavra reservada ENTAO reconhecida: '%s' na linha %d\n", yytext, yylineno); return ENTAO; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 32 "goianinha.l"
-{ return SENAO; }
+#line 33 "goianinha.l"
+{ printf("Palavra reservada SENAO reconhecida: '%s' na linha %d\n", yytext, yylineno); return SENAO; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 33 "goianinha.l"
-{ return ENQUANTO; }
+#line 34 "goianinha.l"
+{ printf("Palavra reservada ENQUANTO reconhecida: '%s' na linha %d\n", yytext, yylineno); return ENQUANTO; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 34 "goianinha.l"
-{ return EXECUTE; }
+#line 35 "goianinha.l"
+{ printf("Palavra reservada EXECUTE reconhecida: '%s' na linha %d\n", yytext, yylineno); return EXECUTE; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 36 "goianinha.l"
-{ return OU; }
+#line 37 "goianinha.l"
+{ printf("Operador OU reconhecido: '%s' na linha %d\n", yytext, yylineno); return OU; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 37 "goianinha.l"
-{ return E; }
+#line 38 "goianinha.l"
+{ printf("Operador E reconhecido: '%s' na linha %d\n", yytext, yylineno); return E; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 38 "goianinha.l"
-{ return NEGACAO; }
+#line 39 "goianinha.l"
+{ printf("Operador NEGACAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return NEGACAO; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 39 "goianinha.l"
-{ return IGUAL; }
+#line 40 "goianinha.l"
+{ printf("Operador IGUAL reconhecido: '%s' na linha %d\n", yytext, yylineno); return IGUAL; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 40 "goianinha.l"
-{ return DIFERENTE; }
+#line 41 "goianinha.l"
+{ printf("Operador DIFERENTE reconhecido: '%s' na linha %d\n", yytext, yylineno); return DIFERENTE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 41 "goianinha.l"
-{ return MENOR_IGUAL; }
+#line 42 "goianinha.l"
+{ printf("Operador MENOR_IGUAL reconhecido: '%s' na linha %d\n", yytext, yylineno); return MENOR_IGUAL; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "goianinha.l"
-{ return MAIOR_IGUAL; }
+#line 43 "goianinha.l"
+{ printf("Operador MAIOR_IGUAL reconhecido: '%s' na linha %d\n", yytext, yylineno); return MAIOR_IGUAL; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 43 "goianinha.l"
-{ return MENOR; }
+#line 44 "goianinha.l"
+{ printf("Operador MENOR reconhecido: '%s' na linha %d\n", yytext, yylineno); return MENOR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 44 "goianinha.l"
-{ return MAIOR; }
+#line 45 "goianinha.l"
+{ printf("Operador MAIOR reconhecido: '%s' na linha %d\n", yytext, yylineno); return MAIOR; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 45 "goianinha.l"
-{ return ATRIBUICAO; }
+#line 46 "goianinha.l"
+{ printf("Operador ATRIBUICAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return ATRIBUICAO; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 46 "goianinha.l"
-{ return ADICAO; }
+#line 47 "goianinha.l"
+{ printf("Operador ADICAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return ADICAO; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 47 "goianinha.l"
-{ return SUBTRACAO; }
+#line 48 "goianinha.l"
+{ printf("Operador SUBTRACAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return SUBTRACAO; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 48 "goianinha.l"
-{ return MULTIPLICACAO; }
+#line 49 "goianinha.l"
+{ printf("Operador MULTIPLICACAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return MULTIPLICACAO; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 49 "goianinha.l"
-{ return DIVISAO; }
+#line 50 "goianinha.l"
+{ printf("Operador DIVISAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return DIVISAO; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 50 "goianinha.l"
-{ return ABRE_PARENTESES; }
+#line 51 "goianinha.l"
+{ printf("Token ABRE_PARENTESES reconhecido: '%s' na linha %d\n", yytext, yylineno); return ABRE_PARENTESES; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 51 "goianinha.l"
-{ return FECHA_PARENTESES; }
+#line 52 "goianinha.l"
+{ printf("Token FECHA_PARENTESES reconhecido: '%s' na linha %d\n", yytext, yylineno); return FECHA_PARENTESES; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 52 "goianinha.l"
-{ return VIRGULA; }
+#line 53 "goianinha.l"
+{ printf("Operador VIRGULA reconhecido: '%s' na linha %d\n", yytext, yylineno); return VIRGULA; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 53 "goianinha.l"
-{ return PONTO_VIRGULA; }
+#line 54 "goianinha.l"
+{ printf("Token PONTO_VIRGULA reconhecido: '%s' na linha %d\n", yytext, yylineno); return PONTO_VIRGULA; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 54 "goianinha.l"
-{ return ABRE_CHAVES; }
+#line 55 "goianinha.l"
+{ printf("Token ABRE_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return ABRE_CHAVES; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 55 "goianinha.l"
-{ return FECHA_CHAVES; }
+#line 56 "goianinha.l"
+{ printf("Token FECHA_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return FECHA_CHAVES; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 57 "goianinha.l"
-{ yylval.strValue = strdup(yytext); return ID; }
+#line 58 "goianinha.l"
+{ yylval.strValue = strdup(yytext); printf("Token ID reconhecido: '%s' na linha %d\n", yytext, yylineno); return ID; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 58 "goianinha.l"
-{ yylval.intValue = atoi(yytext); return INT_CONST; }
+#line 59 "goianinha.l"
+{ yylval.intValue = atoi(yytext); printf("Token INT_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return INT_CONST; }
 	YY_BREAK
 case 35:
 /* rule 35 can match eol */
 YY_RULE_SETUP
-#line 59 "goianinha.l"
-{ yylval.intValue = yytext[1]; return CAR_CONST; }
+#line 60 "goianinha.l"
+{ yylval.intValue = yytext[1]; printf("Token CAR_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return CAR_CONST; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 60 "goianinha.l"
-{ yylval.strValue = strdup(yytext); return CADEIA_CARACTERES; }
+#line 61 "goianinha.l"
+{ yylval.strValue = strdup(yytext); printf("Token CADEIA_CARACTERES reconhecido: '%s' na linha %d\n", yytext, yylineno); return CADEIA_CARACTERES; }
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
-#line 62 "goianinha.l"
+#line 63 "goianinha.l"
 { yylineno++; }
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 63 "goianinha.l"
-{ /* Ignore comments */ }
+#line 64 "goianinha.l"
+{ /* Ignorar comentários */ }
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 64 "goianinha.l"
-{ /* Ignore whitespace */ }
+#line 65 "goianinha.l"
+{ /* Ignorar espaços em branco */ }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 66 "goianinha.l"
+#line 67 "goianinha.l"
 { printf("ERRO LEXICO: COMENTARIO NAO TERMINA na linha %d\n", yylineno); exit(1); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 67 "goianinha.l"
-{ printf("ERRO LEXICO: CADEIA DE CARACTERES NAO TERMINA na linha %d\n", yylineno); }
+#line 68 "goianinha.l"
+{ printf("ERRO LEXICO: CADEIA DE CARACTERES NAO TERMINA na linha %d\n", yylineno); exit(1); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 68 "goianinha.l"
-{ printf("ERRO LEXICO: CARACTERE INVALIDO '%s' na linha %d\n", yytext, yylineno); }
+#line 69 "goianinha.l"
+{ printf("ERRO LEXICO: CARACTERE INVALIDO '%s' na linha %d\n", yytext, yylineno); exit(1); }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 70 "goianinha.l"
+#line 71 "goianinha.l"
 { return -1; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 72 "goianinha.l"
+#line 73 "goianinha.l"
 ECHO;
 	YY_BREAK
-#line 1040 "goianinha.c"
+#line 1041 "goianinha.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2039,6 +2040,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 72 "goianinha.l"
-
+#line 73 "goianinha.l"
 

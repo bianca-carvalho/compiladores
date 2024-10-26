@@ -1,0 +1,20 @@
+### Os testes sao feitos com os arquivos fornecidos pelo professor
+
+TESTES ANALISADOR LÉXICO
+./goianinha lexico_testes/erroLin6Caractereinvalido%.txt
+./goianinha lexico_testes/expressao1Correto.txt
+./goianinha lexico_testes/expressao1ErroLin4CadeiaNaoTermina.txt
+./goianinha lexico_testes/fatorialCorreto.txt
+./goianinha lexico_testes/fatorialErroLin1ComentarioNtermina.txt
+./goianinha lexico_testes/fatorialErroLin15String2linhas.txt
+
+TESTES ANALISADOR SINTÁTICO
+
+./goianinha sintatico_testes/erroLin6AsteriscoAmais.txt
+./goianinha sintatico_testes/expressao1Correto.txt
+./goianinha sintatico_testes/expressao1ErroLin4CadeiaNaoTermina.txt
+./goianinha sintatico_testes/expressao1ErroLin4PontoVirg.txt
+./goianinha sintatico_testes/fatorial.txt
+./goianinha sintatico_testes/fatorialCorreto.txt
+./goianinha sintatico_testes/fatorialErroLin1Comentario.txt
+./goianinha sintatico_testes/fatorialErroLin15String.txt

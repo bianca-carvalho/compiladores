@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern int yylineno; // Número da linha para imprimir erros
+extern int yylineno;
+extern FILE *yyin;
 
 void yyerror(const char *s);
 int yylex();
@@ -38,7 +39,7 @@ Programa:
 ;
 
 DeclFuncVar:
-    Tipo ID DeclVar ';' DeclFuncVar
+    Tipo ID DeclVar PONTO_VIRGULA DeclFuncVar
     | Tipo ID DeclFunc DeclFuncVar
     | /* cadeiavazia */
 ;
@@ -48,12 +49,12 @@ DeclProg:
 ;
 
 DeclVar:
-    ',' ID DeclVar
+    VIRGULA ID DeclVar
     | /* cadeiavazia */
 ;
 
 DeclFunc:
-    '(' ListaParametros ')' Bloco
+    ABRE_PARENTESES ListaParametros FECHA_PARENTESES Bloco
 ;
 
 ListaParametros:
@@ -63,17 +64,17 @@ ListaParametros:
 
 ListaParametrosCont:
     Tipo ID
-    | Tipo ID ',' ListaParametrosCont
+    | Tipo ID VIRGULA ListaParametrosCont
 ;
 
 Bloco:
-    '{' ListaDeclVar ListaComando '}'
-    | '{' ListaDeclVar '}'
+    ABRE_CHAVES ListaDeclVar ListaComando FECHA_CHAVES
+    | ABRE_CHAVES ListaDeclVar FECHA_CHAVES
 ;
 
 ListaDeclVar:
     /* cadeiavazia */
-    | Tipo ID DeclVar ';' ListaDeclVar
+    | Tipo ID DeclVar PONTO_VIRGULA ListaDeclVar
 ;
 
 Tipo:
@@ -87,16 +88,16 @@ ListaComando:
 ;
 
 Comando:
-    ';'
-    | Expr ';'
-    | RETORNE Expr ';'
-    | LEIA LValueExpr ';'
-    | ESCREVA Expr ';'
-    | ESCREVA CADEIA_CARACTERES ';'
-    | NOVA_LINHA ';'
-    | SE '(' Expr ')' ENTAO Comando
-    | SE '(' Expr ')' ENTAO Comando SENAO Comando
-    | ENQUANTO '(' Expr ')' EXECUTE Comando
+    PONTO_VIRGULA
+    | Expr PONTO_VIRGULA
+    | RETORNE Expr PONTO_VIRGULA
+    | LEIA LValueExpr PONTO_VIRGULA
+    | ESCREVA Expr PONTO_VIRGULA
+    | ESCREVA CADEIA_CARACTERES PONTO_VIRGULA
+    | NOVA_LINHA PONTO_VIRGULA
+    | SE ABRE_PARENTESES Expr FECHA_PARENTESES ENTAO Comando
+    | SE ABRE_PARENTESES Expr FECHA_PARENTESES ENTAO Comando SENAO Comando
+    | ENQUANTO ABRE_PARENTESES Expr FECHA_PARENTESES EXECUTE Comando
     | Bloco
 ;
 
@@ -147,37 +148,55 @@ UnExpr:
     | PrimExpr
 ;
 
-AssignExpr:
-    ID
-    | INT_CONST
-    | CAR_CONST
-;
-
 LValueExpr:
     ID
 ;
 
+AssignExpr:
+    ID
+    | INT_CONST
+    | CAR_CONST
+    | AddExpr
+    | ID ATRIBUICAO AssignExpr
+;
+
 PrimExpr:
-    ID '(' ListExpr ')'
-    | ID '(' ')'
+    ID ABRE_PARENTESES ListExpr FECHA_PARENTESES
+    | ID ABRE_PARENTESES FECHA_PARENTESES
     | ID
     | CAR_CONST
     | INT_CONST
-    | '(' Expr ')'
+    | ABRE_PARENTESES Expr FECHA_PARENTESES
 ;
 
 ListExpr:
     Expr
-    | ListExpr ',' Expr
+    | ListExpr VIRGULA Expr
 ;
 
 %%
 
 int main(int argc, char **argv) {
+    if (argc < 2) {
+        fprintf(stderr, "Uso: %s <arquivo>\n", argv[0]);
+        return 1;
+    }
+
+    FILE *file = fopen(argv[1], "r");
+    if (!file) {
+        perror("Erro ao abrir o arquivo");
+        return 1;
+    }
+    
+    // Redireciona a entrada padrão para o arquivo
+    yyin = file;
+
     yyparse();
+
+    fclose(file); // Fecha o arquivo após a análise
     return 0;
 }
 
 void yyerror(const char* s) {
-    fprintf(stderr, "Error: %s\n", s);
+    fprintf(stderr, "ERRO: %s na linha %d\n", s, yylineno);
 }
