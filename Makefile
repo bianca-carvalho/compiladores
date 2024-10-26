@@ -1,14 +1,14 @@
 # Nome do executável final
-TARGET = calc
+TARGET = goianinha
 
 # Compilador e flags
 CC = gcc
 CFLAGS = -Wall -g
 
 # Arquivos fonte gerados pelo Flex e Bison
-LEX_SRC = lexer.c
-YACC_SRC = parser.tab.c
-YACC_HEADER = parser.tab.h
+LEX_SRC = goianinha.c
+YACC_SRC = goianinha.tab.c
+YACC_HEADER = goianinha.tab.h
 
 # Objetos
 OBJS = $(LEX_SRC:.c=.o) $(YACC_SRC:.c=.o)
@@ -20,12 +20,12 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) -lfl
 
-# Regra para gerar o arquivo lexer.c com Flex
-$(LEX_SRC): lexer.l $(YACC_HEADER)
+# Regra para gerar o arquivo goianinha.c com Flex
+$(LEX_SRC): goianinha.l $(YACC_HEADER)
 	flex -o $@ $<
 
-# Regra para gerar parser.tab.c e parser.tab.h com Bison
-$(YACC_SRC) $(YACC_HEADER): parser.y
+# Regra para gerar goianinha.tab.c e goianinha.tab.h com Bison
+$(YACC_SRC) $(YACC_HEADER): goianinha.y
 	bison -d -Wcounterexamples $<
 
 # Regra de compilação para os arquivos .o

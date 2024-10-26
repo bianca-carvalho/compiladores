@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> // Para strdup
-#include "parser.tab.h"
+#include "goianinha.tab.h"
 
 extern int yylineno; /* número da linha */
 %}
@@ -54,10 +54,10 @@ cadeiaCaracteres    \"([^\\\"\n]|\\.)*\"
 "{"                    { return ABRE_CHAVES; }
 "}"                    { return FECHA_CHAVES; }
 
-{id}                   { yylval = strdup(yytext); return ID; }
-{intconst}             { yylval = atoi(yytext); return INT_CONST; }
-{carconst}             { yylval = yytext[1]; return CAR_CONST; }
-{cadeiaCaracteres}     { yylval = strdup(yytext); return CADEIA_CARACTERES; }
+{id}                   { yylval.strValue = strdup(yytext); return ID; }
+{intconst}             { yylval.intValue = atoi(yytext); return INT_CONST; }
+{carconst}             { yylval.intValue = yytext[1]; return CAR_CONST; }
+{cadeiaCaracteres}     { yylval.strValue = strdup(yytext); return CADEIA_CARACTERES; }
 
 \n                     { yylineno++; }
 {comentario}           { /* Ignore comments */ }

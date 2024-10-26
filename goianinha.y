@@ -1,9 +1,21 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+
+extern int yylineno; // Número da linha para imprimir erros
+
 void yyerror(const char *s);
 int yylex();
 %}
+
+%union {
+    int intValue;
+    char* strValue;
+}
+
+// Declare os tipos de produção
+%type <strValue> ID CADEIA_CARACTERES
+%type <intValue> INT_CONST CAR_CONST
 
 /* Definição dos tokens */
 
@@ -80,7 +92,7 @@ Comando:
     | RETORNE Expr ';'
     | LEIA LValueExpr ';'
     | ESCREVA Expr ';'
-    | ESCREVA "CADEIA_CARACTERES" ';'
+    | ESCREVA CADEIA_CARACTERES ';'
     | NOVA_LINHA ';'
     | SE '(' Expr ')' ENTAO Comando
     | SE '(' Expr ')' ENTAO Comando SENAO Comando
@@ -164,4 +176,8 @@ ListExpr:
 int main(int argc, char **argv) {
     yyparse();
     return 0;
+}
+
+void yyerror(const char* s) {
+    fprintf(stderr, "Error: %s\n", s);
 }
