@@ -31,12 +31,11 @@ E esse arquivo é utilizado como entrada para que o Flex gere o analisador léxi
 No arquivo goianinha.y sao definidos:
 - os tokens
 - as regras da gramática
-- os erros sintáticos?
 
 E esse arquivo é utilizado como entrada para que o Bison gere o analisador sintático.
 
 ## TODO
 
-- Tratar como os erros sintáticoa sao exibidos
-- Verificar a contagem de linhas para exibiçao do erro
-- Verificar sobre AssignExpr, pois ela é nao-terminal e na gramática ela nao tem produçao
+- **Tratar como os erros sintáticos sao exibidos**
+
+- **Verificar a contagem de linhas para exibiçao do erro**

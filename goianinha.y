@@ -1,9 +1,11 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 extern int yylineno;
 extern FILE *yyin;
+extern char *yytext;
 
 void yyerror(const char *s);
 int yylex();
@@ -14,7 +16,6 @@ int yylex();
     char* strValue;
 }
 
-// Declare os tipos de produção
 %type <strValue> ID CADEIA_CARACTERES
 %type <intValue> INT_CONST CAR_CONST
 
@@ -103,7 +104,7 @@ Comando:
 
 Expr:
     OrExpr
-    | LValueExpr ATRIBUICAO AssignExpr
+    | LValueExpr ATRIBUICAO Expr
 ;
 
 OrExpr:
@@ -152,14 +153,6 @@ LValueExpr:
     ID
 ;
 
-AssignExpr:
-    ID
-    | INT_CONST
-    | CAR_CONST
-    | AddExpr
-    | ID ATRIBUICAO AssignExpr
-;
-
 PrimExpr:
     ID ABRE_PARENTESES ListExpr FECHA_PARENTESES
     | ID ABRE_PARENTESES FECHA_PARENTESES
@@ -188,15 +181,15 @@ int main(int argc, char **argv) {
         return 1;
     }
     
-    // Redireciona a entrada padrão para o arquivo
     yyin = file;
 
     yyparse();
 
-    fclose(file); // Fecha o arquivo após a análise
+    fclose(file);
     return 0;
 }
 
+/* TODO: especificar erros?*/
 void yyerror(const char* s) {
-    fprintf(stderr, "ERRO: %s na linha %d\n", s, yylineno);
+    fprintf(stderr, "ERRO SINTÁTICO: %s próximo ao token '%s' na linha %d\n", s, yytext, yylineno);
 }

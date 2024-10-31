@@ -1,14 +1,13 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> // Para strdup
-#include "goianinha.tab.h"
+#include "goianinha.sintatico.h"
 
 extern int yylineno;
-extern FILE *yyin;
 %}
 
 %option noyywrap
+%option noinput nounput
 
 numero              [0-9]
 letra               [a-zA-Z_]
@@ -55,12 +54,26 @@ cadeiaCaracteres    \"([^\\\"\n]|\\.)*\"
 "{"                    { printf("Token ABRE_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return ABRE_CHAVES; }
 "}"                    { printf("Token FECHA_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return FECHA_CHAVES; }
 
-{id}                   { yylval.strValue = strdup(yytext); printf("Token ID reconhecido: '%s' na linha %d\n", yytext, yylineno); return ID; }
+{id}                   {
+                            yylval.strValue = (char *)malloc(strlen(yytext) + 1);
+                                if (yylval.strValue != NULL) {
+                                    strcpy(yylval.strValue, yytext);
+                                };
+                            printf("Token ID reconhecido: '%s' na linha %d\n", yytext, yylineno);
+                            return ID;
+                        }
 {intconst}             { yylval.intValue = atoi(yytext); printf("Token INT_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return INT_CONST; }
 {carconst}             { yylval.intValue = yytext[1]; printf("Token CAR_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return CAR_CONST; }
-{cadeiaCaracteres}     { yylval.strValue = strdup(yytext); printf("Token CADEIA_CARACTERES reconhecido: '%s' na linha %d\n", yytext, yylineno); return CADEIA_CARACTERES; }
+{cadeiaCaracteres}     {
+                            yylval.strValue = (char *)malloc(strlen(yytext) + 1);
+                                if (yylval.strValue != NULL) {
+                                    strcpy(yylval.strValue, yytext);
+                                };
+                            printf("Token CADEIA_CARACTERES reconhecido: '%s' na linha %d\n", yytext, yylineno);
+                            return CADEIA_CARACTERES;
+                        }
 
-\n                     { yylineno++; }
+{espaco}*\n            { printf("nova linha - lexico\n"); yylineno++; }
 {comentario}           { /* Ignorar comentários */ }
 {espaco}               { /* Ignorar espaços em branco */ }
 

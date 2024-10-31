@@ -1,4 +1,3 @@
-/* ./goianinha lexico_testes/fatorialCorreto.txt */
 /* Este é um programa em Cafezinho que calcula o fatorial de um nmero*/
 int fatorial(int n){
 	se (n==0)

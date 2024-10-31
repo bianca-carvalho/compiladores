@@ -1,37 +1,25 @@
-# Nome do executável final
-TARGET = goianinha
-
-# Compilador e flags
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -g -Wall -ansi
+LFLAGS = -lm
 
-# Arquivos fonte gerados pelo Flex e Bison
-LEX_SRC = goianinha.c
-YACC_SRC = goianinha.tab.c
-YACC_HEADER = goianinha.tab.h
+goianinha:    sintatico.o lexico.o
+	$(CC) $(CFLAGS) $(LFLAGS) lexico.o sintatico.o -o  goianinha
 
-# Objetos
-OBJS = $(LEX_SRC:.c=.o) $(YACC_SRC:.c=.o)
+sintatico.o: goianinha.sintatico.c
+	$(CC) $(CFLAGS) -c goianinha.sintatico.c -o sintatico.o
 
-# Regras principais
-all: $(TARGET)
+goianinha.sintatico.c: goianinha.y
+	bison -d -t -v --output=goianinha.sintatico.c goianinha.y 
 
-# Regra para o executável
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -lfl
+lexico.o: goianinha.lexico.c
+	$(CC) $(CFLAGS) -c goianinha.lexico.c -o lexico.o
+	
+goianinha.lexico.c: goianinha.l
+	flex  --yylineno --outfile=goianinha.lexico.c goianinha.l 
 
-# Regra para gerar o arquivo goianinha.c com Flex
-$(LEX_SRC): goianinha.l $(YACC_HEADER)
-	flex -o $@ $<
-
-# Regra para gerar goianinha.tab.c e goianinha.tab.h com Bison
-$(YACC_SRC) $(YACC_HEADER): goianinha.y
-	bison -d -Wcounterexamples $<
-
-# Regra de compilação para os arquivos .o
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-# Limpeza dos arquivos gerados
 clean:
-	rm -f $(OBJS) $(LEX_SRC) $(YACC_SRC) $(YACC_HEADER) $(TARGET)
+	rm -f   goianinha*.c  *.o    goianinha
+
+cleanObj:
+	rm -f   *.o  
+
