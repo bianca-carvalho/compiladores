@@ -189,7 +189,6 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-/* TODO: especificar erros?*/
 void yyerror(const char* s) {
     fprintf(stderr, "ERRO SINTÁTICO: %s próximo ao token '%s' na linha %d\n", s, yytext, yylineno);
 }

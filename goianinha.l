@@ -54,26 +54,12 @@ cadeiaCaracteres    \"([^\\\"\n]|\\.)*\"
 "{"                    { printf("Token ABRE_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return ABRE_CHAVES; }
 "}"                    { printf("Token FECHA_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return FECHA_CHAVES; }
 
-{id}                   {
-                            yylval.strValue = (char *)malloc(strlen(yytext) + 1);
-                                if (yylval.strValue != NULL) {
-                                    strcpy(yylval.strValue, yytext);
-                                };
-                            printf("Token ID reconhecido: '%s' na linha %d\n", yytext, yylineno);
-                            return ID;
-                        }
+{id}                   { yylval.strValue = strdup(yytext); printf("Token ID reconhecido: '%s' na linha %d\n", yytext, yylineno); return ID; }
 {intconst}             { yylval.intValue = atoi(yytext); printf("Token INT_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return INT_CONST; }
 {carconst}             { yylval.intValue = yytext[1]; printf("Token CAR_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return CAR_CONST; }
-{cadeiaCaracteres}     {
-                            yylval.strValue = (char *)malloc(strlen(yytext) + 1);
-                                if (yylval.strValue != NULL) {
-                                    strcpy(yylval.strValue, yytext);
-                                };
-                            printf("Token CADEIA_CARACTERES reconhecido: '%s' na linha %d\n", yytext, yylineno);
-                            return CADEIA_CARACTERES;
-                        }
+{cadeiaCaracteres}     { yylval.strValue = strdup(yytext); printf("Token CADEIA_CARACTERES reconhecido: '%s' na linha %d\n", yytext, yylineno); return CADEIA_CARACTERES; }
 
-{espaco}*\n            { printf("nova linha - lexico\n"); yylineno++; }
+\n                     { /* Ignorar nova linha */ }
 {comentario}           { /* Ignorar comentários */ }
 {espaco}               { /* Ignorar espaços em branco */ }
 
