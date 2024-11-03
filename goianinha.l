@@ -20,44 +20,44 @@ cadeiaCaracteres    \"([^\\\"\n]|\\.)*\"
 
 %%
 
-"programa"             { printf("Palavra reservada PROGRAMA reconhecida: '%s' na linha %d\n", yytext, yylineno); return PROGRAMA; }
-"car"                  { printf("Palavra reservada CARACTERE reconhecida: '%s' na linha %d\n", yytext, yylineno); return CARACTERE; }
-"int"                  { printf("Palavra reservada INTEIRO reconhecida: '%s' na linha %d\n", yytext, yylineno); return INTEIRO; }
-"retorne"              { printf("Palavra reservada RETORNE reconhecida: '%s' na linha %d\n", yytext, yylineno); return RETORNE; }
-"leia"                 { printf("Palavra reservada LEIA reconhecida: '%s' na linha %d\n", yytext, yylineno); return LEIA; }
-"escreva"              { printf("Palavra reservada ESCREVA reconhecida: '%s' na linha %d\n", yytext, yylineno); return ESCREVA; }
-"novalinha"            { printf("Palavra reservada NOVA_LINHA reconhecida: '%s' na linha %d\n", yytext, yylineno); return NOVA_LINHA; }
-"se"                   { printf("Palavra reservada SE reconhecida: '%s' na linha %d\n", yytext, yylineno); return SE; }
-"entao"                { printf("Palavra reservada ENTAO reconhecida: '%s' na linha %d\n", yytext, yylineno); return ENTAO; }
-"senao"                { printf("Palavra reservada SENAO reconhecida: '%s' na linha %d\n", yytext, yylineno); return SENAO; }
-"enquanto"             { printf("Palavra reservada ENQUANTO reconhecida: '%s' na linha %d\n", yytext, yylineno); return ENQUANTO; }
-"execute"              { printf("Palavra reservada EXECUTE reconhecida: '%s' na linha %d\n", yytext, yylineno); return EXECUTE; }
+"programa"             { return PROGRAMA; }
+"car"                  { return CARACTERE; }
+"int"                  { return INTEIRO; }
+"retorne"              { return RETORNE; }
+"leia"                 { return LEIA; }
+"escreva"              { return ESCREVA; }
+"novalinha"            { return NOVA_LINHA; }
+"se"                   { return SE; }
+"entao"                { return ENTAO; }
+"senao"                { return SENAO; }
+"enquanto"             { return ENQUANTO; }
+"execute"              { return EXECUTE; }
 
-"ou"                   { printf("Operador OU reconhecido: '%s' na linha %d\n", yytext, yylineno); return OU; }
-"e"                    { printf("Operador E reconhecido: '%s' na linha %d\n", yytext, yylineno); return E; }
-"!"                    { printf("Operador NEGACAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return NEGACAO; }
-"=="                   { printf("Operador IGUAL reconhecido: '%s' na linha %d\n", yytext, yylineno); return IGUAL; }
-"!="                   { printf("Operador DIFERENTE reconhecido: '%s' na linha %d\n", yytext, yylineno); return DIFERENTE; }
-"<="                   { printf("Operador MENOR_IGUAL reconhecido: '%s' na linha %d\n", yytext, yylineno); return MENOR_IGUAL; }
-">="                   { printf("Operador MAIOR_IGUAL reconhecido: '%s' na linha %d\n", yytext, yylineno); return MAIOR_IGUAL; }
-"<"                    { printf("Operador MENOR reconhecido: '%s' na linha %d\n", yytext, yylineno); return MENOR; }
-">"                    { printf("Operador MAIOR reconhecido: '%s' na linha %d\n", yytext, yylineno); return MAIOR; }
-"="                    { printf("Operador ATRIBUICAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return ATRIBUICAO; }
-"+"                    { printf("Operador ADICAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return ADICAO; }
-"-"                    { printf("Operador SUBTRACAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return SUBTRACAO; }
-"*"                    { printf("Operador MULTIPLICACAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return MULTIPLICACAO; }
-"/"                    { printf("Operador DIVISAO reconhecido: '%s' na linha %d\n", yytext, yylineno); return DIVISAO; }
-"("                    { printf("Token ABRE_PARENTESES reconhecido: '%s' na linha %d\n", yytext, yylineno); return ABRE_PARENTESES; }
-")"                    { printf("Token FECHA_PARENTESES reconhecido: '%s' na linha %d\n", yytext, yylineno); return FECHA_PARENTESES; }
-","                    { printf("Operador VIRGULA reconhecido: '%s' na linha %d\n", yytext, yylineno); return VIRGULA; }
-";"                    { printf("Token PONTO_VIRGULA reconhecido: '%s' na linha %d\n", yytext, yylineno); return PONTO_VIRGULA; }
-"{"                    { printf("Token ABRE_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return ABRE_CHAVES; }
-"}"                    { printf("Token FECHA_CHAVES reconhecido: '%s' na linha %d\n", yytext, yylineno); return FECHA_CHAVES; }
+"ou"                   { return OU; }
+"e"                    { return E; }
+"!"                    { return NEGACAO; }
+"=="                   { return IGUAL; }
+"!="                   { return DIFERENTE; }
+"<="                   { return MENOR_IGUAL; }
+">="                   { return MAIOR_IGUAL; }
+"<"                    { return MENOR; }
+">"                    { return MAIOR; }
+"="                    { return ATRIBUICAO; }
+"+"                    { return ADICAO; }
+"-"                    { return SUBTRACAO; }
+"*"                    { return MULTIPLICACAO; }
+"/"                    { return DIVISAO; }
+"("                    { return ABRE_PARENTESES; }
+")"                    { return FECHA_PARENTESES; }
+","                    { return VIRGULA; }
+";"                    { return PONTO_VIRGULA; }
+"{"                    { return ABRE_CHAVES; }
+"}"                    { return FECHA_CHAVES; }
 
-{id}                   { yylval.strValue = strdup(yytext); printf("Token ID reconhecido: '%s' na linha %d\n", yytext, yylineno); return ID; }
-{intconst}             { yylval.intValue = atoi(yytext); printf("Token INT_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return INT_CONST; }
-{carconst}             { yylval.intValue = yytext[1]; printf("Token CAR_CONST reconhecido: '%s' na linha %d\n", yytext, yylineno); return CAR_CONST; }
-{cadeiaCaracteres}     { yylval.strValue = strdup(yytext); printf("Token CADEIA_CARACTERES reconhecido: '%s' na linha %d\n", yytext, yylineno); return CADEIA_CARACTERES; }
+{id}                   { yylval.strValue = strdup(yytext); return ID; }
+{intconst}             { yylval.intValue = atoi(yytext); return INT_CONST; }
+{carconst}             { yylval.intValue = yytext[1]; return CAR_CONST; }
+{cadeiaCaracteres}     { yylval.strValue = strdup(yytext); return CADEIA_CARACTERES; }
 
 \n                     { /* Ignorar nova linha */ }
 {comentario}           { /* Ignorar comentários */ }

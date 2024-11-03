@@ -7,8 +7,8 @@ extern int yylineno;
 extern FILE *yyin;
 extern char *yytext;
 
-void yyerror(const char *s);
 int yylex();
+void yyerror(const char *s);
 %}
 
 %union {
@@ -190,5 +190,6 @@ int main(int argc, char **argv) {
 }
 
 void yyerror(const char* s) {
-    fprintf(stderr, "ERRO SINTÁTICO: %s próximo ao token '%s' na linha %d\n", s, yytext, yylineno);
+    fprintf(stderr, "%s\n", s);
+    fprintf(stderr, "ERRO SINTÁTICO: próximo ao token '%s' na linha %d\n", yytext, yylineno);
 }

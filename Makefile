@@ -21,8 +21,17 @@ goianinha.lexico.c: goianinha.l
 	flex  --yylineno --outfile=goianinha.lexico.c goianinha.l 
 
 clean:
-	rm -f   goianinha*.c  *.o    goianinha goianinha.sintatico.h goianinha.sintatico.output
+	rm -f   goianinha*.c  *.o    goianinha 
 
 cleanObj:
 	rm -f   *.o  
 
+# Quando seu trabalho estiver pronto. No diretorio onde estão fontes digite na 
+#linha de comando: make tgz
+# este comando ira criar um arquivo do tipo tar zipado com extensao .tgz contendo os 
+#fontes do seu programa e o Makefile.
+# envie um mail com este arquivo para o professor.
+tgz: 
+	rm -f *.o rm goianinha *.tgz 
+	tar -zcvf goianinha.tgz *
+	echo "O arquivo goianinha.tgz com os fontes e Makefile foi gerado. Pode ser enviado."
